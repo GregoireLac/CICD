@@ -1,5 +1,5 @@
 ---
-name: Build and test
+name: Labo 2.0
 on:
   push:
     branches:
@@ -10,9 +10,11 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-    - name: Run ESLint
-      run: yarn lint
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: yarn install
+      - name: Run ESLint
+        run: yarn lint
