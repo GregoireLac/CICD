@@ -18,5 +18,3 @@ jobs:
         run: yarn install
       - name: Run ESLint
         run: yarn lint
-        with:
-          files: ../../webapp
