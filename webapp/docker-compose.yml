@@ -1,0 +1,38 @@
+services:
+  webapp:
+    image: gregoirelacombe/webapp
+    ports:
+      - "3000:3000"
+    environment:
+      - MYSQL_URL=mysql://root:Mysql@database:3306/animals
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./database:/app/database
+    command: yarn start
+
+  database:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Mysql
+      MYSQL_DATABASE: animals
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  tests:
+    image: gregoirelacombe/webapp
+    environment:
+      - API_URL=http://webapp:3000
+    depends_on:
+      - webapp
+    command: yarn test
+
+volumes:
+  mysql_data:
