@@ -46,7 +46,7 @@ export default [
       "max-len": [
         "error",
         {
-          code: 140,
+          code: 120,
           tabWidth: 2,
         },
       ],
