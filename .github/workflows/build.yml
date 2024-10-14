@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Inloggen indockerhub
         uses: docker/login-action@v3
         with:
