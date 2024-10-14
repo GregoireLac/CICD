@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v6.9.0
         with:
           context: .
-          file: ./Dockerfile
+          file: ./webapp/Dockerfile
           tags: gregoirelacombe/webapp:latest
           push: true
       - name: dependencies installeren
