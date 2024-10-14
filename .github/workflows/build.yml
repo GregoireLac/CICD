@@ -1,5 +1,6 @@
 ---
 name: Labo 2.0
+
 on:
   push:
     branches:
@@ -8,15 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: repository code
         uses: actions/checkout@v3
       - name: Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - name: Install dependencies
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v6.9.0
+        with:
+          context: . #root
+          file: ./Dockerfile
+          tags: gregoirelacombe/webapp:latest
+          push: false
+      - name: dependencies installeren
         run: yarn install
         working-directory: ./webapp
-      - name: Run lint
+      - name: lint uitvoeren
         run: yarn eslint . --fix
         working-directory: ./webapp
