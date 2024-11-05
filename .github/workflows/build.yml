@@ -31,5 +31,5 @@ jobs:
         run: yarn install
         working-directory: ./webapp
       - name: lint uitvoeren
-        run: yarn eslint . --fix
+        run: yarn eslint .
         working-directory: ./webapp
